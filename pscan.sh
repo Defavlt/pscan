@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Scan local ports
-# Usage: scan 0 / scan 0,1,2 / scan 0-8
-function scan {
+# Usage: pscan 0 / pscan 0,1,2 / pscan 0-8
+function pscan {
   if [[ -z $1 || -z $2 ]]; then
       echo "Usage: $0 <host> <port, ports, or port-range> [verbose (0 or 1)]"
     return
@@ -40,6 +40,8 @@ function scan {
 # Uncomment the below lines to use it with `.' instead of `source'
 #if [[ -z $1 || -z $2 ]];
 #then
-#    echo "Usage: $0 <host> <port, ports, or port-range> [verbose (0 or 1)]"
-#    return #Don't use `exit', this might be called from a script
+#   echo "Usage: $0 <host> <port, ports, or port-range> [verbose (0 or 1)]"
+#   return #Don't use `exit', this might be called from a script
+#else
+#   pscan $1 $2
 #fi
