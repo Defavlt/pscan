@@ -9,6 +9,11 @@ function pscan {
   fi
 
   local host=$1
+  
+  # $2 = ports
+  # optional
+  local verbose=${3:-foo}
+
   local ports=()
   local any=0
 
@@ -32,8 +37,8 @@ function pscan {
   for port in "${ports[@]}"; do
       printf "\r$port: SCAN   \t"
       timeout 1 bash -c "echo >/dev/tcp/$host/$port" &> /dev/null &&
-          printf "\r$port: OPEN   \n" ||
-          printf "\r"
+          { printf "\r$port: OPEN   \n" } ||
+          { [ verbose ] && printf "\r$port: CLOSED  \n" || printf "\r" }
   done
 }
 
